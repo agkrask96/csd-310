@@ -1,6 +1,28 @@
+""" 
+    Title: mongodb_test.py
+    Author: Abigail Kraska
+    Date: 1-15-22
+    Description: Test program for connecting to a 
+                 MongoDB Atlas cluster
+"""
+
+""" import statements """
 import pymongo
 from pymongo import MongoClient
-url = "mongodb+srv://admin:admin@cluster0.cyknf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+# MongoDB connection string 
+url = "mongodb://admin:admin@cluster0-shard-00-00.cyknf.mongodb.net:27017,cluster0-shard-00-01.cyknf.mongodb.net:27017,cluster0-shard-00-02.cyknf.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-gjfhyl-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+# connect to the MongoDB cluster 
 client = MongoClient(url)
+
+# connect pytech database
 db = client.pytech
-print(db.list_collection_names)
+
+# show the connected collections 
+print("\n -- Pytech COllection List --")
+print(db.list_collection_names())
+
+# show an exit message
+input("\n\n  End of program, press any key to exit... ")
+
